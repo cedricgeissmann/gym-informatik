@@ -1,17 +1,25 @@
+import time
+
 from ipycanvas import Canvas
 from math import cos, sin, radians
 
 
 class Turtle:
-    canvas = Canvas(width=200, height=200)
+    canvas = Canvas(width=400, height=400)
 
-    x_pos = 100
-    y_pos = 100
+    x_pos = 200
+    y_pos = 200
     direction = 0
+    color = "black"
+    drawing = True
+
+    def __init__(self):
+        self.canvas = Canvas(width=400, height=400)
 
     def forward(self, steps=50):
         x_end, y_end = self.calculate_endpoint(steps)
-        self.canvas.stroke_line(self.x_pos, self.y_pos, x_end, y_end)
+        if self.is_pen_down():
+            self.canvas.stroke_line(self.x_pos, self.y_pos, x_end, y_end)
         self.x_pos = x_end
         self.y_pos = y_end
 
@@ -24,12 +32,75 @@ class Turtle:
         self.direction = (self.direction + degree) % 360
 
     def reset(self):
-        self.x_pos = 100
-        self.y_pos = 100
+        self.x_pos = 200
+        self.y_pos = 200
         self.direction = 0
+        self.set_color("black")
 
     def clear(self):
         self.canvas.clear()
 
     def show(self):
+        self.canvas.fill_style = "green"
+        self.canvas.fill_rect(self.x_pos - 2, self.y_pos - 2, 4, 4)
+        self.canvas.fill_style = self.color
+        self.canvas.stroke_style = self.color
         return self.canvas
+
+    def set_color(self, color):
+        self.color = color
+        self.canvas.fill_style = self.color
+        self.canvas.stroke_style = self.color
+
+    def is_pen_down(self):
+        return self.drawing
+
+    def pen_up(self):
+        self.drawing = False
+
+    def pen_down(self):
+        self.drawing = True
+
+
+turtle = Turtle()
+
+
+def make_turtle():
+    global turtle
+    turtle = Turtle()
+
+
+def forward(steps=50):
+    turtle.forward(steps)
+
+
+def turn(degree=90):
+    turtle.turn(degree)
+
+
+def show():
+    return turtle.show()
+
+
+def clear():
+    turtle.clear()
+
+
+def reset():
+    turtle.reset()
+
+
+def color(color):
+    turtle.set_color(color)
+
+
+def pen_up():
+    turtle.pen_up()
+
+
+def pen_down():
+    turtle.pen_down()
+
+
+def sleep(secs):
+    time.sleep(secs)
