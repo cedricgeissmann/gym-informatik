@@ -5,16 +5,16 @@ from math import cos, sin, radians
 
 
 class Turtle:
-    canvas = Canvas(width=400, height=400)
-
-    x_pos = 200
-    y_pos = 200
     direction = 0
     color = "black"
     drawing = True
 
-    def __init__(self):
-        self.canvas = Canvas(width=400, height=400)
+    def __init__(self, x_max=400, y_max=400):
+        self.canvas = Canvas(width=x_max, height=y_max)
+        self.x_max = x_max
+        self.x_pos = x_max / 2
+        self.y_max = y_max
+        self.y_pos = y_max / 2
 
     def forward(self, steps=50):
         x_end, y_end = self.calculate_endpoint(steps)
@@ -61,6 +61,15 @@ class Turtle:
     def pen_down(self):
         self.drawing = True
 
+    def is_x_inside_boundries(self):
+        return self.x_pos >= 0 and self.x_pos < x_max
+
+    def is_y_inside_boundries(self):
+        return self.y_pos >= 0 and self.y_pos < y_max
+
+    def is_inside_boundries(self):
+        return self.is_x_inside_boundries() and self.is_y_inside_boundries()
+
 
 turtle = Turtle()
 
@@ -104,3 +113,7 @@ def pen_down():
 
 def sleep(secs):
     time.sleep(secs)
+
+
+def is_inside_boundries():
+    return turtle.is_inside_boundries()
