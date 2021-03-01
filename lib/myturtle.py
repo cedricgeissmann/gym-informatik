@@ -62,13 +62,22 @@ class Turtle:
         self.drawing = True
 
     def is_x_inside_boundries(self):
-        return self.x_pos >= 0 and self.x_pos < x_max
+        return self.x_pos >= 0 and self.x_pos < self.x_max
 
     def is_y_inside_boundries(self):
-        return self.y_pos >= 0 and self.y_pos < y_max
+        return self.y_pos >= 0 and self.y_pos < self.y_max
 
     def is_inside_boundries(self):
         return self.is_x_inside_boundries() and self.is_y_inside_boundries()
+
+    def get_x_pos(self):
+        return self.x_pos
+
+    def get_y_pos(self):
+        return self.y_pos
+
+    def set_canvas_size(self, width, height):
+        self.canvas = Canvas()
 
 
 turtle = Turtle()
@@ -117,3 +126,16 @@ def sleep(secs):
 
 def is_inside_boundries():
     return turtle.is_inside_boundries()
+
+
+def get_x_pos():
+    return turtle.get_x_pos()
+
+
+def get_y_pos():
+    return turtle.get_y_pos()
+
+
+def set_canvas_size(width, height):
+    global turtle
+    turtle = Turtle(width, height)
