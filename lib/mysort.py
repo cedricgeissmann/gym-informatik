@@ -56,3 +56,7 @@ def bubble_sort_demo():
                 sorted = False
         display_list(li)
         sleep(0.2)
+
+
+def convert_list_to_ascii(li):
+    return list(map(lambda x: ord(str(x)), li))
