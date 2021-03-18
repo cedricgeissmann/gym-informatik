@@ -18,7 +18,7 @@ def make_canvas():
     display(canvas)
 
 
-def display_list(li):
+def display_list(li, index=-1):
     pos = 0
     min_elem = min(li)
     max_elem = max(li) + 1
@@ -28,8 +28,14 @@ def display_list(li):
     with hold_canvas(canvas):
         canvas.clear()
         for elem in li:
+            before_color = canvas.fill_style
+            if pos == index:
+                color('red')
+            if pos == index + 1:
+                color('blue')
             rect_height = (elem - min_elem + 1) * elem_height
             canvas.fill_rect(0 + pos * width, 400 - rect_height, width, rect_height)
+            color(before_color)
             pos += 1
 
 
@@ -49,13 +55,17 @@ def bubble_sort_demo():
     while not sorted:
         sorted = True
         for i in range(len(li) - 1):
+            display_list(li, i)
+            sleep(0.5)
             if li[i] > li[i + 1]:
+                sleep(1)
                 tmp = li[i]
                 li[i] = li[i + 1]
                 li[i + 1] = tmp
                 sorted = False
-        display_list(li)
-        sleep(0.2)
+                display_list(li, i)
+                sleep(1)
+                break
 
 
 def convert_list_to_ascii(li):
