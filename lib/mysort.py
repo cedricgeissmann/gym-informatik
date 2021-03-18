@@ -18,7 +18,7 @@ def make_canvas():
     display(canvas)
 
 
-def display_list(li, index=-1):
+def display_list(li, index=-2):
     pos = 0
     min_elem = min(li)
     max_elem = max(li) + 1
