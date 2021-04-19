@@ -14,7 +14,7 @@ except ModuleNotFoundError:
 
 
 def main():
-    test_dir = os.path.join("/tmp", "new-repo")
+    test_dir = os.path.join(".", "new-repo")
     try:
         os.mkdir(test_dir)
         print(f"Ordner {test_dir} wurde erstellt.")
