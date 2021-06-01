@@ -1,3 +1,6 @@
 jupyter
 ipycanvas
 ipywidgets
+matplotlib
+numpy
+pandas
