@@ -4,3 +4,6 @@ ipywidgets
 matplotlib
 numpy
 pandas
+sklearn
+seaborn
+tensorflow
